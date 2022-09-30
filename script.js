@@ -23,12 +23,14 @@ async function DFS(graph, start, end) {
         }
         for (var i in graph[node]) {
             if (!seen[i]) {
+                await set_available_path(graph[node]);
                 seen[i] = true;
                 var newPath = path.slice();
                 newPath.push(i);
                 queue.push(newPath);
             }
         }
+        remove_available_path();
     }
 }
 
@@ -39,18 +41,20 @@ async function BFS(graph, start, end) {
     queue.push(start);
     seen[start] = true;
     while (queue.length > 0) {
-        let currentNode = queue.shift();
-        path.push(currentNode);
-        await visit_path(currentNode);
-        if (currentNode === end) {
+        let currNode = queue.shift();
+        path.push(currNode);
+        await visit_path(currNode);
+        if (currNode === end) {
             return path;
         }
-        for (let neighborNode in graph[currentNode]) {
+        for (let neighborNode in graph[currNode]) {
             if (!seen[neighborNode]) {
+                await set_available_path(graph[currNode]);
                 seen[neighborNode] = true;
                 queue.push(neighborNode);
             }
         }
+        remove_available_path();
     }
     return path;
 }
@@ -63,27 +67,40 @@ function reset_path() {
     }
 }
 
-async function visit_path(path) {
+async function set_available_path(path) {
     await new Promise((resolve) => setTimeout(resolve, 500));
-    document.getElementById(`node_${path}`).classList.add('visited');
+    for (let key in path) {
+        document.getElementById(`node_${key}`).classList.add('available');
+    }
+}
+
+function remove_available_path() {
+    document.querySelectorAll('.available').forEach((e) => e.classList.remove('available'));
+}
+
+async function visit_path(node) {
+    document.getElementById(`node_${node}`).classList.add('visited');
+    await new Promise((resolve) => setTimeout(resolve, 500));
 }
 
 function start_bfs() {
     reset_path();
     document.getElementById('btn-bfs').classList.add('btn-active');
-    console.log(`${BFS(graph, 'S', 'T')}`);
+    console.log(`Starting BFS...`);
+    BFS(graph, 'S', 'T');
 }
 
 function start_dfs() {
     reset_path();
     document.getElementById('btn-dfs').classList.add('btn-active');
-    console.log(`${DFS(graph, 'S', 'T')}`);
+    console.log(`Starting DFS...`);
+    DFS(graph, 'S', 'T');
 }
 
 async function trace_short_path() {
     reset_path();
     document.getElementById('btn-trace').classList.add('btn-active');
-    
+
     short_path = ['S', 'C', 'B', 'T'];
 
     for (let i = 0; i < short_path.length; i++) {
