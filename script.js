@@ -18,6 +18,7 @@ async function DFS(graph, start, end) {
         var path = queue.pop();
         var node = path[path.length - 1];
         await visit_path(node);
+        await add_path_letters(node);
         if (node == end) {
             return path;
         }
@@ -44,6 +45,7 @@ async function BFS(graph, start, end) {
         let currNode = queue.shift();
         path.push(currNode);
         await visit_path(currNode);
+        await add_path_letters(currNode);
         if (currNode === end) {
             return path;
         }
@@ -59,12 +61,16 @@ async function BFS(graph, start, end) {
     return path;
 }
 
+// Language: javascript
+// Path: Projects\Project 1\script.js
+
+/* Animations */
 function reset_path() {
     document.querySelectorAll('.btn-active').forEach((e) => e.classList.remove('btn-active'));
 
-    for (let key in graph) {
-        document.getElementById(`node_${key}`).classList.remove('visited');
-    }
+    document.querySelectorAll('.visited').forEach((e) => e.classList.remove('visited'));
+    
+    document.getElementById('path').innerHTML = '';
 }
 
 async function set_available_path(path) {
@@ -83,6 +89,28 @@ async function visit_path(node) {
     await new Promise((resolve) => setTimeout(resolve, 500));
 }
 
+async function add_path_letters(letter) {
+    let path = document.getElementById('path').innerHTML;
+    
+    path += `<p1 id="path_${letter}">[${letter}]</span>`;
+    
+    document.getElementById('path').innerHTML = path;
+    
+    document.getElementById(`path`).classList.add('letters');
+    document.getElementById(`path_${letter}`).classList.add('letter-color');
+    
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    // add new p1 tag
+    if (path != '' && !path.includes('T')) {
+        path += ' -> ';
+    }
+
+    document.getElementById('path').innerHTML = path;
+}
+
+
+
+/* Button On Click Functions */
 function start_bfs() {
     reset_path();
     document.getElementById('btn-bfs').classList.add('btn-active');
@@ -105,5 +133,6 @@ async function trace_short_path() {
 
     for (let i = 0; i < short_path.length; i++) {
         await visit_path(short_path[i]);
+        await add_path_letters(short_path[i]);
     }
 }
