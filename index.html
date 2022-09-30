@@ -1,0 +1,44 @@
+<!-- Basic HTML Structure -->
+<html>
+    <head>
+        <title>CSE 545 Project 1</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="script.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div id="button-panel" class="button-panel">
+                <button id="btn-dfs" class="button ease" onclick="start_dfs()"> DFS </button>
+                <button id="btn-bfs" class="button ease" onclick="start_bfs()"> BFS </button>
+                <button id="btn-trace" class="button ease" onclick="trace_short_path()">Trace</button>
+                <button id="btn-reset" class="button ease" onclick="reset_path()">Reset</button>
+            </div>
+            <div id="canvas" class="canvas img">
+                <div id="graph" class="graph">
+                    <div id="node_S" class="node-color start" style="position: absolute; left: 50px; top: 350px">
+                        <h1 class="node-text">S</h1>
+                    </div>
+                    <div id="node_A" class="node-color link " style="position: absolute; left: 350px; top: 550px">
+                        <h1 class="node-text">A</h1>
+                    </div>
+                    <div id="node_B" class="node-color link" style="position: absolute; left: 700px; top: 550px">
+                        <h1 class="node-text">B</h1>
+                    </div>
+                    <div id="node_C" class="node-color link" style="position: absolute; left: 350px; top: 150px">
+                        <h1 class="node-text">C</h1>
+                    </div>
+                    <div id="node_D" class="node-color" style="position: absolute; left: 700px; top: 150px">
+                        <h1 class="node-text">D</h1>
+                    </div>
+                    <div id="node_T" class="node-color end" style="position: absolute; left: 1000px; top: 350px">
+                        <h1 class="node-text">T</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
