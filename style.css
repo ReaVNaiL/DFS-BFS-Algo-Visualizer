@@ -87,19 +87,6 @@ body {
     background-color: #ff6e6c;
 }
 
-/* Create Links between nodes */
-path.link.selected {
-    stroke-dasharray: 10, 2;
-  }
-  
-path.link.dragline {
-pointer-events: none;
-}
-
-path.link.hidden {
-stroke-width: 0;
-}
-
 .button-panel {
     position: absolute;
     width: 30%;
