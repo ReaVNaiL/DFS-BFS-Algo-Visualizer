@@ -6,8 +6,7 @@
    */
 
 /* Add Background */
-html,
-body {
+html, body {
     height: 100%;
     width: 100%;
     background-color: #374754;
@@ -52,7 +51,7 @@ body {
 }
 
 .letters {
-    transition: all 0.55s ease-in-out;
+    transition: all 0.5s ease-in-out;
     width: 100%;
     height: 100%;
     font-size: 30px;
@@ -79,7 +78,7 @@ body {
     font-size: 40px;
 }
 .node-color {
-    transition: all 0.55s ease;
+    transition: all 0.5s ease;
     width: 8%;
     height: 12%;
     border-radius: 100%;
@@ -98,8 +97,7 @@ body {
     font-size: 25px;
 }
 
-.start,
-.end {
+.start, .end {
     transition: all 0.35s ease-in;
     background-color: #f3acf9;
 }
