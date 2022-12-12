@@ -56,6 +56,7 @@ async function BFS(graph, start, end, skip) {
         if (currNode === end) {
             return path;
         }
+        
         for (let neighborNode in graph[currNode]) {
             if (!seen[neighborNode]) {
                 if (!skip) await set_available_path(graph[currNode]);

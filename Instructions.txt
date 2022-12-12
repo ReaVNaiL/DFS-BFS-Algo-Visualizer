@@ -1,4 +1,0 @@
-How To Run:
-
-1- Simply click on the index.html, and it should load all the dependencies from the folder!
-- If visualizer is not framed correctly, try moving or resizing the window. It would consitute more effort trying to make it work for mobile devices.
